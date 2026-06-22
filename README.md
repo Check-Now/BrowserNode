@@ -98,7 +98,8 @@ source/apps/extension/dist/
 ```powershell
 cd ..\..\..
 Remove-Item .\BrowserNode-Chrome-Extension -Recurse -Force -ErrorAction SilentlyContinue
-Copy-Item .\source\apps\extension\dist .\BrowserNode-Chrome-Extension -Recurse
+New-Item -ItemType Directory -Force -Path .\BrowserNode-Chrome-Extension
+Copy-Item .\source\apps\extension\dist\* .\BrowserNode-Chrome-Extension -Recurse -Force
 ```
 
 ## 使用方法

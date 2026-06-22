@@ -27,6 +27,12 @@ function Add-PathIfExists($Path) {
   }
 }
 
+function Require-LastCommand($Message) {
+  if ($LASTEXITCODE -ne 0) {
+    throw $Message
+  }
+}
+
 function Refresh-ToolPath() {
   $machine = [Environment]::GetEnvironmentVariable("Path", "Machine")
   $user = [Environment]::GetEnvironmentVariable("Path", "User")
@@ -83,12 +89,18 @@ Ensure-Tool "go" "GoLang.Go"
 Say "Building Chrome extension"
 Push-Location $ExtensionProject
 npm install
+Require-LastCommand "npm install failed"
 npm run build
+Require-LastCommand "npm run build failed"
 Pop-Location
 
 Say "Creating root extension folder: $ExtensionOut"
+$ExtensionDist = Join-Path $ExtensionProject "dist"
+Require-Path $ExtensionDist "Extension dist was not generated: $ExtensionDist"
 Remove-GeneratedDir $ExtensionOut
-Copy-Item -LiteralPath (Join-Path $ExtensionProject "dist") -Destination $ExtensionOut -Recurse -Force
+New-Item -ItemType Directory -Force -Path $ExtensionOut | Out-Null
+Copy-Item -Path (Join-Path $ExtensionDist "*") -Destination $ExtensionOut -Recurse -Force
+Require-Path (Join-Path $ExtensionOut "manifest.json") "Extension output was not generated correctly: $ExtensionOut"
 
 Say "Installing sing-box for current user"
 $BinDir = Join-Path $InstallDir "bin"
@@ -96,6 +108,7 @@ New-Item -ItemType Directory -Force -Path $BinDir | Out-Null
 Copy-Item -Path (Join-Path $SingBoxDir "*") -Destination $BinDir -Recurse -Force
 $InstalledSingBox = Join-Path $BinDir "sing-box.exe"
 & $InstalledSingBox version | Select-Object -First 1
+Require-LastCommand "sing-box version check failed"
 
 Say "Building and installing Native Host"
 $HostDir = Join-Path $InstallDir "native-host"
@@ -103,7 +116,9 @@ $ScriptsDir = Join-Path $InstallDir "scripts"
 New-Item -ItemType Directory -Force -Path $HostDir, $ScriptsDir | Out-Null
 Push-Location (Join-Path $Project "native-host")
 go test ./...
+Require-LastCommand "go test failed"
 go build -ldflags="-H=windowsgui" -o (Join-Path $HostDir "browernode-host.exe") .\cmd\browernode-host
+Require-LastCommand "go build failed"
 Pop-Location
 Copy-Item -Path (Join-Path $Project "installer\scripts\*") -Destination $ScriptsDir -Recurse -Force
 
@@ -112,6 +127,7 @@ powershell -ExecutionPolicy Bypass -File (Join-Path $ScriptsDir "install-host.ps
   -InstallDir $InstallDir `
   -ExtensionId $ExtensionId `
   -SingBoxPath $InstalledSingBox
+Require-LastCommand "Native Host registration failed"
 
 Say "Opening extension folder and Chrome extensions page"
 Start-Process explorer.exe $ExtensionOut

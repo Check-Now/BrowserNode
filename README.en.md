@@ -99,7 +99,8 @@ To regenerate the root extension folder loaded by Chrome:
 ```powershell
 cd ..\..\..
 Remove-Item .\BrowserNode-Chrome-Extension -Recurse -Force -ErrorAction SilentlyContinue
-Copy-Item .\source\apps\extension\dist .\BrowserNode-Chrome-Extension -Recurse
+New-Item -ItemType Directory -Force -Path .\BrowserNode-Chrome-Extension
+Copy-Item .\source\apps\extension\dist\* .\BrowserNode-Chrome-Extension -Recurse -Force
 ```
 
 ## Usage
