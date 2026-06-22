@@ -145,31 +145,11 @@ powershell -ExecutionPolicy Bypass -File .\source\installer\scripts\uninstall-ho
 %LOCALAPPDATA%\BrowserNode
 ```
 
-## 常见问题
-
-### 为什么 sing-box 核心和本地 SOCKS5 显示未启动？
-
-未连接时显示未启动是正常的。点击「连接」并成功启动节点后才会显示运行。
-
-### 这是系统级 VPN 吗？
-
-不是。BrowserNode 只控制 Chrome 常规窗口代理，不修改 Windows 系统代理。
-
-### 为什么 Chrome 扩展加载后 Native Host 无法连接？
-
-通常是扩展 ID 变化导致 Native Host 白名单不匹配。重新运行安装脚本，然后重新加载扩展。
-
-### 为什么测速失败？
-
-节点可能不可达、服务器端口被阻断、订阅节点不完整，或本机网络无法连接该服务器。
-
 ## 安全与隐私
 
 - 不读取网页内容。
 - 不注入内容脚本。
 - 不上传订阅、节点、测速结果到云端。
-- 订阅 URL、节点密码、UUID 等都属于敏感信息，不要提交到 GitHub。
-- 不要把 GitHub token、订阅链接、代理账号写入 README、issue、commit 或截图。
 
 ## 许可证
 

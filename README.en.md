@@ -146,31 +146,11 @@ powershell -ExecutionPolicy Bypass -File .\source\installer\scripts\uninstall-ho
 %LOCALAPPDATA%\BrowserNode
 ```
 
-## FAQ
-
-### Why do sing-box core and local SOCKS5 show as stopped?
-
-That is normal when BrowserNode is disconnected. They show as running only after a node is connected successfully.
-
-### Is this a system-wide VPN?
-
-No. BrowserNode only controls regular Chrome window proxy settings. It does not change the Windows system proxy.
-
-### Why cannot the extension connect to the Native Host?
-
-The extension ID may have changed and no longer matches the Native Host allowlist. Re-run the installer, then reload the extension.
-
-### Why does latency testing fail?
-
-The node may be unreachable, blocked, incomplete, or unavailable from your local network.
-
 ## Security And Privacy
 
 - Does not read page content.
 - Does not inject content scripts.
 - Does not upload subscriptions, nodes, or latency results to a cloud service.
-- Subscription URLs, node passwords, UUIDs, and tokens are sensitive. Do not commit them to GitHub.
-- Do not put GitHub tokens, subscription links, proxy accounts, or screenshots containing secrets in README files, issues, commits, or screenshots.
 
 ## License
 
