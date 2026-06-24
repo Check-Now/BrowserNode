@@ -533,9 +533,16 @@ select {
   border-top: 0;
 }
 
-.node-row.selected,
+.node-row:hover {
+  background: #f7faff;
+}
+
+.node-row.selected {
+  background: #dbeafe;
+}
+
 .node-row.connected {
-  background: #eef5ff;
+  background: #d7e7ff;
 }
 
 .node-row.connected {
@@ -563,9 +570,10 @@ select {
   border: 0;
 }
 
-.node-name:hover {
-  color: #1f63f4;
+.node-row .node-name:hover {
+  color: #172033;
   background: transparent;
+  border-color: transparent;
 }
 
 .node-region {
