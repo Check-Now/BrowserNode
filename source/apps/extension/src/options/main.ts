@@ -862,16 +862,7 @@ function groupedSubscriptions(): SubscriptionRecord[] {
 }
 
 function sortNodes(nodes: CanonicalNode[]): CanonicalNode[] {
-  return [...nodes].sort((a, b) => scoreNode(b) - scoreNode(a) || a.name.localeCompare(b.name));
-}
-
-function scoreNode(node: CanonicalNode): number {
-  let score = 0;
-  if (data.status.currentNodeId === node.id) score += 1000;
-  if (data.selectedNodeId === node.id) score += 500;
-  const latency = (node as CanonicalNode & { latency?: number }).latency;
-  if (typeof latency === "number") score += Math.max(0, 100 - latency / 10);
-  return score;
+  return [...nodes].sort((a, b) => a.name.localeCompare(b.name, language === "zh" ? "zh-Hans-CN" : "en", { numeric: true }));
 }
 
 function groupExpanded(subscription: SubscriptionRecord): boolean {
