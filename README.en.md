@@ -6,7 +6,7 @@ BrowserVPN-Chrome is a local proxy/VPN tool for Windows and Chrome. It combines 
 
 This project is source-available for noncommercial use only. Users are responsible for complying with local laws and for all consequences of use.
 
-![BrowserVPN-Chrome extension preview](assets/browservpn-preview.png)
+![BrowserVPN-Chrome English UI preview](assets/en.png)
 
 ## Features
 

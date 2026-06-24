@@ -6,7 +6,7 @@ BrowserVPN-Chrome 是一个面向 Windows + Chrome 的本地代理/VPN 工具。
 
 本项目为 source-available / noncommercial 项目，仅允许非商业用途。使用者必须遵守所在地法律法规，使用风险和后果自行承担。
 
-![BrowserVPN-Chrome 插件预览](assets/browservpn-preview.png)
+![BrowserVPN-Chrome 中文界面预览](assets/cn.png)
 
 ## 功能
 
