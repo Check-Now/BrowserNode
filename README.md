@@ -34,7 +34,7 @@ BrowserVPN-Chrome 是一个面向 Windows + Chrome 的本地代理/VPN 工具。
 下载或克隆仓库后，双击运行：
 
 ```text
-install\一键安装-BrowserVPN-Chrome.bat
+install\install-browservpn-chrome.bat
 ```
 
 安装脚本会自动：

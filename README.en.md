@@ -34,7 +34,7 @@ This project is source-available for noncommercial use only. Users are responsib
 Download or clone this repository, then double-click:
 
 ```text
-install\一键安装-BrowserVPN-Chrome.bat
+install\install-browservpn-chrome.bat
 ```
 
 The installer will:
